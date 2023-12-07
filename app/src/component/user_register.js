@@ -83,7 +83,7 @@ function User_register(){
                 </label>
             </div>
             <br/>        
-            <button class="btn btn-primary" type="button">Button</button>
+            <button class="btn btn-primary" type="button">Submit</button>
         </form>
 
     </div>
