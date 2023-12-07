@@ -1,18 +1,22 @@
 #r_form{
-    width: 50vh;
+    width: 43vh;
     margin-top: 1rem;
+  
 }
 
 #r_box{
     display: flex;
     justify-content: center;
     
+      background-color: #f0f0f0;
+   
+    
 }
 .btn{
-    width:50vh;
+    width:43vh;
 }
 #center{
-    width: 50vh;
+    width: 43vh;
     
 }
 h1{
