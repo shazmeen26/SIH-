@@ -9,17 +9,17 @@
 #r_box{
     display: flex;
     justify-content: center;
-    background-color: #f0f0f0;
+   
     
      
    
     
 }
 .btn{
-    width:43vh;
+    width: 42vh;
 }
 #center{
-    width: 43vh;
+    width: 42vh;
     
 }
 h1{
@@ -30,4 +30,8 @@ h1{
 *{
     font-family: Arial, Helvetica, sans-serif;
 
+}
+.rounded-circle{
+    height: 10rem;
+    width: 10rem;
 }
