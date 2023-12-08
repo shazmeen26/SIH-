@@ -48,10 +48,7 @@ function User_register(){
            
         </div>
 
-        <div class="mb-3">
-            <label for="number" class="form-label">Number</label>
-            <input type="number" class="form-control"/>
-        </div>
+     
 
         <div class="mb-3">
             <label for="adhar" class="form-label">Adhar number</label>
