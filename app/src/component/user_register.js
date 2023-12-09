@@ -76,7 +76,7 @@ function User_register(){
     return(
     <div id="r_box">
        
-     
+    <div id="r_forms">
       <form id="r_form">
       <div id="Center">  <h1>Register</h1></div>
         <div class="mb-3">
@@ -215,6 +215,7 @@ function User_register(){
         <br/>       
             <button onClick={Submit} className="btn btn-primary" type="button">Submit</button>
         </form>
+        </div>
 
     </div>
        
