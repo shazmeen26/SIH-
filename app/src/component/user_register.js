@@ -122,12 +122,12 @@ function User_register(){
         
         <div class="mb-3">
             <label for="city" class="form-label">City</label>
-            <input onChange={(e)=>{setcity(e.target.value)}} id="City" name="City" class="form-control" aria-label="With textarea"></input>
+            <input onChange={(e)=>{setcity(e.target.value)}} type='textfield' id="City" name="City" class="form-control" aria-label="With textarea"></input>
         </div>
         
         <div class="mb-3">
             <label for="city" class="form-label">Pincode</label>
-            <input onChange={(e)=>{setpincode(e.target.value)}} id="Pincode" name="Pincode" class="form-control" aria-label="With textarea"></input>
+            <input onChange={(e)=>{setpincode(e.target.value)}} type='number' id="Pincode" name="Pincode" class="form-control" aria-label="With textarea"></input>
         </div>
         
         <div class="form-check">
@@ -140,7 +140,7 @@ function User_register(){
             </label>
             </div>
             <div class="form-check">
-            <input onChange={(e)=>{setgender(e.target.value)}} value="Female" class="form-check-input" type="radio" name="Gender" id=" Gender flexRadioDefault2" checked />
+            <input onChange={(e)=>{setgender(e.target.value)}} value="Female" class="form-check-input" type="radio" name="Gender" id=" Gender flexRadioDefault2"  />
             <label class="form-check-label" for="female">
                 Female
             </label>

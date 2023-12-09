@@ -24,7 +24,7 @@ const newSchema = new mongoose.Schema({
         require:true,
     },
     DOB:{
-        type:Number,
+        type:String,
         require:true
     },
 
