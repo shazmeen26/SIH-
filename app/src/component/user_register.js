@@ -5,35 +5,36 @@ import axios from "axios";
 function User_register(){
 
 
-    let [firstname,setfirstname]=useState("")
-    let [secondname,setsecondname]=useState("")
-    let [dob,setdob]=useState(0)
-    let [age,setage]=useState(0)
-    let [adhar,setadhar]=useState(0)
-    let [number,setnumber]=useState(0)
-    let [address, setAddres]=useState("")
-    let [city,setcity]=useState("")
-    let [pincode,setpincode]=useState(0)
+    let [Firstname,setfirstname]=useState("")
+    let [Secondname,setsecondname]=useState("")
+    let [DOB,setdob]=useState(0)
+    let [Age,setage]=useState(0)
+    let [Adhar,setadhar]=useState(0)
+    let [Number,setnumber]=useState(0)
+    let [Address, setAddres]=useState("")
+    let [City,setcity]=useState("")
+    let [Pincode,setpincode]=useState(0)
     let [Gender,setgender]=useState("")
     let [Alcohol,setalcohol]=useState("")
     let [Tabaco,settabaco]=useState("")
     let [Druggs,setdrugs]=useState("")
     let [Other,setother]=useState("")
 
-    async function submit(e) {
+    async function Submit(e) {
+        alert("hello")
         e.preventDefault();
         try {
-          const response = await axios.post("http://localhost:8000/login", {
+          const response = await axios.post("http://localhost:8000/register", {
           
-          firstname,
-          secondname,
-          dob,
-          age,
-          adhar,
-          number,
-          address,
-          city,
-          pincode
+          Firstname,
+          Secondname,
+          DOB,
+          Age,
+          Adhar,
+          Number,
+          Address,
+          City,
+          Pincode
           ,Gender,
           Alcohol, 
           Tabaco,
@@ -80,26 +81,26 @@ function User_register(){
       <div id="Center">  <h1>Register</h1></div>
         <div class="mb-3">
             <label for="name_first" class="form-label">First name</label>
-            <input onChange={(e)=>{setfirstname(e.target.value)}} type="First name" name="firstname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+            <input onChange={(e)=>{setfirstname(e.target.value)}} type="First name"  name="Firstname" class="form-control" id="Firstnam exampleInputEmail1" aria-describedby="emailHelp"/>
            
         </div>
 
         
         <div class="mb-3">
             <label for="name_second" class="form-label">Second name</label>
-            <input onChange={(e)=>{setsecondname(e.target.value)}} type="Second name" name="secondname" class="form-control" />
+            <input onChange={(e)=>{setsecondname(e.target.value)}} id="Secondname" type="Second name" name="Secondname" class="form-control" />
            
         </div>
 
         <div class="mb-3">
             <label for="name_second" class="form-label">Date of birth</label>
-            <input onChange={(e)=>{setdob(e.target.value)}} id="dob" name="dob" type="Date" class="form-control" />
+            <input onChange={(e)=>{setdob(e.target.value)}} id="DOB" name="DOB" type="Date" class="form-control" />
            
         </div>
 
         <div class="mb-3">
             <label for="Age" class="form-label">Age</label>
-            <input onChange={(e)=>{setage(e.target.value)}} name="age" type="number" class="form-control"  />
+            <input onChange={(e)=>{setage(e.target.value)}} id="Age" name="Age" type="number" class="form-control"  />
            
         </div>
 
@@ -107,39 +108,39 @@ function User_register(){
 
         <div class="mb-3">
             <label for="adhar" class="form-label">Adhar number</label>
-            <input onChange={(e)=>{setadhar(e.target.value)}}  name="adhar" type="number" class="form-control"/>
+            <input onChange={(e)=>{setadhar(e.target.value)}}  id="Adhar" name="Adhar" type="number" class="form-control"/>
         </div>
         
         <div class="mb-3">
             <label for="phone" class="form-label">Phone number</label>
-            <input onChange={(e)=>{setnumber(e.target.value)}}  name="number" type="number" class="form-control"/>
+            <input onChange={(e)=>{setnumber(e.target.value)}} id="Number"  name="Number" type="number" class="form-control"/>
         </div>
         <div class="mb-3">
             <label for="adhar" class="form-label">Address</label>
-            <textarea onChange={(e)=>{setAddres(e.target.value)}} name="address" class="form-control" aria-label="With textarea"></textarea>
+            <textarea onChange={(e)=>{setAddres(e.target.value)}} id="Address" name="Address" class="form-control" aria-label="With textarea"></textarea>
         </div>
         
         <div class="mb-3">
             <label for="city" class="form-label">City</label>
-            <input onChange={(e)=>{setcity(e.target.value)}} name="city" class="form-control" aria-label="With textarea"></input>
+            <input onChange={(e)=>{setcity(e.target.value)}} id="City" name="City" class="form-control" aria-label="With textarea"></input>
         </div>
         
         <div class="mb-3">
             <label for="city" class="form-label">Pincode</label>
-            <input onChange={(e)=>{setpincode(e.target.value)}} name="pincode" class="form-control" aria-label="With textarea"></input>
+            <input onChange={(e)=>{setpincode(e.target.value)}} id="Pincode" name="Pincode" class="form-control" aria-label="With textarea"></input>
         </div>
         
         <div class="form-check">
 
         <h4> Gender </h4>
              <br/>
-            <input onChange={(e)=>{setgender(e.target.value)}} value="Male" class="form-check-input" type="radio" name="Gender" id="flexRadioDefault1"/>
+            <input onChange={(e)=>{setgender(e.target.value)}}  value="Male" class="form-check-input" type="radio" name="Gender" id=" Gender flexRadioDefault1"/>
             <label class="form-check-label" for="Male">
                 Male
             </label>
             </div>
             <div class="form-check">
-            <input onChange={(e)=>{setgender(e.target.value)}} value="female" class="form-check-input" type="radio" name="Gender" id="flexRadioDefault2" checked />
+            <input onChange={(e)=>{setgender(e.target.value)}} value="Female" class="form-check-input" type="radio" name="Gender" id=" Gender flexRadioDefault2" checked />
             <label class="form-check-label" for="female">
                 Female
             </label>
@@ -154,7 +155,7 @@ function User_register(){
             
                          
              <div class="form-check">
-                <input onChange={(e)=>{setalcohol(e.target.value)}}name="Alcohol" class="form-check-input" type="checkbox" value="Alochol" id="Alochol"/>
+                <input onChange={(e)=>{setalcohol(e.target.value)}}name="Alcohol"   class="form-check-input" type="checkbox" value="Alochol" id="Alochol"/>
                 <label class="form-check-label" >
                 Alochol
                 </label>
@@ -164,7 +165,7 @@ function User_register(){
           
                 <div class="form-check">
                 <input onChange={(e)=>{settabaco(e.target.value)}} name="Tabaco" class="form-check-input" type="checkbox" value="Tabaco" id="Tabaco" />
-                <label class="form-check-label" >
+                <label className="form-check-label" >
                     Tabaco
                 </label>
             </div>
@@ -173,14 +174,14 @@ function User_register(){
             
             <div class="form-check">
                 <input onChange={(e)=>{setdrugs(e.target.value)}} name="Druggs"  class="form-check-input" type="checkbox" value="Druggs" id="Drugs"  />
-                <label class="form-check-label" >
+                <label className="form-check-label" >
                     Druggs
                 </label>
             </div>
             <br/>
             <div class="form-check">
                 <input onChange={(e)=>{setother(e.target.value)}} name="Other" class="form-check-input" type="checkbox" value="other" id="Other"  />
-                <label class="form-check-label" >
+                <label className="form-check-label" >
                     Other
                 </label>
             </div>
@@ -212,7 +213,7 @@ function User_register(){
             </div>
             
         <br/>       
-            <button onClick={submit} class="btn btn-primary" type="button">Submit</button>
+            <button onClick={Submit} className="btn btn-primary" type="button">Submit</button>
         </form>
 
     </div>
