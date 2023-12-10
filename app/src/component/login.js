@@ -124,7 +124,7 @@ export default function Login(){
                 </div>
                 <div className="input-box">
                   <i className="fas fa-lock"></i>
-                  <input  onChange={(e)=>{setPassword(e.target.value)}} name="password" id="password" type="password" placeholder="Enter your password" required />
+                  <input  onChange={(e)=>{setPassword(e.target.value)}} name="password" id="password" type="password" placeholder="Enter your password" />
                 </div>
                 <div className="text">Forgot password?</div>
                 <div className="button input-box">
