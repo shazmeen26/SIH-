@@ -109,33 +109,29 @@ app.post("/login",  async (req, res) => {
       name: sname,
       email: semail,
       password: spassword,
-      date: new Date()
+      date: new Date(),
+      
+
     };
      
     try {
       let token
       const check = await login.findOne({ email: semail });
-     
-      if (check) {
-        res.json("exists");
-         
-        
-      } else {
-        await login.insertMany([data]);
-        
-         //jsw
-      
-            // Generate Token here
-            const token = jwt.sign({ email: semail }, 'your_secret_key');
-            console.log(token); // Log the generated token
-      
-            return res.json({ message: "notexists", token: token });
-      
-      
        
+      if (check) {
+        return res.json("exists");
+      } else {
+        const newUser = new login(data);
+        const token = await newUser.generateAuthToken(); // Correct token generation
+        console.log(token); // Log the generated token
+  
+        await newUser.save(); // Save the new user
+        
+        return res.json( "notexists"); // Respond with token and message
+      }
         
    
-      }
+      
     } catch (e) {
       res.json("server error");
       
