@@ -23,16 +23,13 @@ const newSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
-    DOB:{
-        type:String,
-        require:true
-    },
+  
 
     Age:{
         type:Number,
         require:true
     },
-    Adhar:{
+    Aadhar:{
         type:Number,
         require:true
     },
@@ -60,21 +57,9 @@ const newSchema = new mongoose.Schema({
         type:String,
         require:true,
     },
-    Tabaco:{
-        type:String,
+    Substance:{
+        type:String ,
         require:true,
-    },
-    Other:{
-        type:String,
-        require:true,
-    },
-    Druggs:{
-        type:String,
-        require:true,
-    },
-    date:{
-        type:String,
-        require:true
     }
 })
 const register = mongoose.model("register", newSchema)

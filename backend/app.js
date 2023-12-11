@@ -17,41 +17,36 @@ app.get("/", cors(), (req, res) => {
 app.post("/Register",async(req,res)=>{
     const{    Firstname,
         Secondname,
-        DOB,
+        
         Age,
-        Adhar,
+        Aadhar,
         Number,
         Address,
         City,
         Pincode
         ,Gender,
-        Alcohol, 
-        Tabaco,
-        Druggs, 
-        Other,
+        Substance,
         date} =req.body;
 
         const data = {
             firstname:Firstname,
             secondname:Secondname,
-            DOB:DOB,
+            
             Age:Age,
-            Adhar:Adhar,
+            Aadhar:Aadhar,
             Number:Number,
             Address:Address,
             City:City,
             Pincode:Pincode
             ,Gender:Gender,
-            Alcohol:Alcohol, 
-            Tabaco:Tabaco,
-            Druggs:Druggs, 
-            Other:Other,
+            Substance:Substance,
+            
             
             Date: new Date()
           };
 
         try{
-            const check = await register.findOne({Adhar:Adhar})
+            const check = await register.findOne({Aadhar:Aadhar})
             if (check){
                 res.json("exists")
                 }
