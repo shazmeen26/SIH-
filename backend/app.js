@@ -119,9 +119,17 @@ app.post("/login",  async (req, res) => {
         const newUser = new login(data);
         const token = await newUser.generateAuthToken(); // Correct token generation
         console.log(token); // Log the generated token
+
   
         await newUser.save(); // Save the new user
-        
+        res.cookie("jwttoken",token,{
+          expires:new Date(Date.now()+25892000000),
+          httpOnly:true,
+         
+
+        } )
+        console.log( " token saved Sucessfull")
+
         return res.json( "notexists"); // Respond with token and message
       }
         
