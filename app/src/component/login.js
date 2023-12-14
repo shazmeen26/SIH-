@@ -3,6 +3,7 @@ import axios from "axios";
 import  "./login.css"
 import React ,{useState} from "react";
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 localStorage.setItem("login" , "Login")  
 localStorage.setItem("email", "null")
@@ -72,6 +73,10 @@ export default function Login(){
       
       else if (res.data === "notexists") {
         alert("Account created successfully");
+
+        const token = res.headers['set-cookie']; // Adjust this according to your response
+        Cookies.set('token', token, { expires: 7 }); // Set the token as a cookie
+
       }
     } catch (error) {
       alert("Error creating account");

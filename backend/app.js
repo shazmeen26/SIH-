@@ -125,6 +125,8 @@ app.post("/login",  async (req, res) => {
         res.cookie("jwttoken",token,{
           expires:new Date(Date.now()+25892000000),
           httpOnly:true,
+          secure:true, sameSite:'None'
+          
          
 
         } )
