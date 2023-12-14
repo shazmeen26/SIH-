@@ -34,6 +34,10 @@ const newSchema= new mongoose.Schema({
         require:true
         
     },
+    logintype:{
+        type:String,
+        require:true
+    },
     tokens:[
         {
             token:{

@@ -10,11 +10,20 @@ function Landing() {
     // Redirect based on the selected user type
     if (userType === 'patient') {
       navigate('/patient_login');
+
+      // saving to local storage 
+      localStorage.setItem("logintype","patient")
     } else if (userType === 'admin') {
       navigate('/admin_login');
+
+         // saving to local storage 
+         localStorage.setItem("logintype","admin")
     }
        else if (userType ==='employee'){
         navigate('/employee_login')
+
+           // saving to local storage 
+      localStorage.setItem("logintype","employee")
        }     
     else {
       // Handle other user types or show an error message

@@ -104,6 +104,7 @@ app.post("/login",  async (req, res) => {
       name: sname,
       email: semail,
       password: spassword,
+      logintype:logintype,
       date: new Date(),
       
 
