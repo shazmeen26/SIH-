@@ -2,26 +2,26 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Admin_register() {
-  const [Adminname, setAdminname] = useState('');
-  const [Adminnumber, setAdminnumber] = useState('');
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
-  const [Address, setAddress] = useState('');
-  const [Center, setCenter] = useState('');
-  const [Capacity, setCapacity] = useState('');
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [center_name, setCenter_name] = useState('');
+  const [admin_id, setAdmin_Id] = useState('');
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send data to a backend API)
     try {
-      const response = await axios.post('http://localhost:8000/register', {
-        Adminname,
-        Adminnumber,
-        Email,
-        Password,
-        Address,
-        Center,
-        Capacity
+      const response = await axios.post('http://localhost:8000/admin_Register', {
+        name,
+        number,
+        email,
+        password,
+        center_name,
+        admin_id
+        
       });
 
       if (response.data === 'exists') {
@@ -143,7 +143,7 @@ function Admin_register() {
                 Admin Name:
                 <input
                   type="text"
-                  onChange={(e) => setAdminname(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   id="Admin_name"
                   name="Adminname"
                   required
@@ -154,10 +154,10 @@ function Admin_register() {
             </div>
             <div style={nameInputStyles}>
               <label style={labelStyles}>
-                Last Name:
+                Number:
                 <input
                   type="number"
-                  onChange={(e) => setAdminnumber(e.target.value)}
+                  onChange={(e) => setNumber(e.target.value)}
                   id="Admin_number"
                   name="Adminnumber"
                   required
@@ -196,19 +196,7 @@ function Admin_register() {
             </div>
           </div>
 
-          <div style={nameInputStyles}>
-            <label style={labelStyles}>
-              Address:
-              <textarea
-                onChange={(e) => setAddress(e.target.value)}
-                required
-                id="Address"
-                name="Address"
-                placeholder="Address"
-                style={inputStyles}
-              />
-            </label>
-          </div>
+         
 
           <div style={nameEmailContainerStyles}>
             <div style={nameInputStyles}>
@@ -218,33 +206,41 @@ function Admin_register() {
                   type="text"
                   id="Center"
                   name="Center"
-                  onChange={(e) => setCenter(e.target.value)}
+                  onChange={(e) => setCenter_name(e.target.value)}
                   required
                   placeholder="Center Name"
                   style={inputStyles}
                 />
               </label>
             </div>
-            <div style={nameInputStyles}>
+
+            
+            
+
+            
+         
+          </div>
+
+
+          <div style={nameInputStyles}>
               <label style={labelStyles}>
-                Capacity:
+                Admin:
                 <input
-                  type="number"
-                  id="Capacity"
-                  onChange={(e) => setCapacity(e.target.value)}
+                  type="admin_Id"
+                  name="admin_Id"
+                  onChange={(e) => setAdmin_Id(e.target.value)}
                   required
-                  placeholder="Capacity"
+                  placeholder="Admin id"
+                  id="Email"
                   style={inputStyles}
-                  name="Capacity"
                 />
               </label>
             </div>
-          </div>
 
           
 
-          <button type="submit" style={submitButtonStyles}>
-            Add Center
+          <button type="submit" onClick={handleSubmit}  style={submitButtonStyles}>
+            Register
           </button>
         </form>
       </div>

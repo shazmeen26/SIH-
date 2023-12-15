@@ -1,16 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
-mongoose.connect('mongodb+srv://oswin:oswinalex@cluster0.7mnzpn3.mongodb.net/newtest', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+
+mongoose.connect('mongodb+srv://oswin:oswinalex@cluster0.7mnzpn3.mongodb.net/?retryWrites=true&w=majority&dbname=newtest')
+.then(()=>{
+    console.log("Admin register schema connected ")
+
 })
-  .then(() => {
-    console.log("Connected to Admin collection");
-  })
-  .catch((err) => {
-    console.error("Failed to connect to MongoDB:", err);
-  });
 
+.catch(()=>{
+    console.log("failed to connect")
+})
 const adminSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -28,7 +27,7 @@ const adminSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  admin_Id: {
+  admin_id: {
     type: String,
     required: true,
   },

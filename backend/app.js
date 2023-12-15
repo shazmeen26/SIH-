@@ -8,7 +8,7 @@ const employee = require("./employee_register")
 const RehabilitationCenter = require("./RehabilitationCenter")
 const Government = require("./GovernmentInfo")
 const DoctorInfo = require("./DoctorInfo")
-
+const Admin= require("./center_admin")
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -121,6 +121,52 @@ app.post("/employee_Register",async(req,res)=>{
           }
       
 })  
+
+// admin register connected
+
+app.post("/admin_Register",async(req,res)=>{
+  const{   name,
+            email,
+            admin_id,
+            center_name,
+            number,
+            password,
+
+      date} =req.body;
+
+      const data = {
+        name:name,
+        email:email,
+        admin_id:admin_id,
+        center_name:center_name,
+        number:number,
+          Date: new Date()
+        };
+        const data2 = {
+          email:email,
+          password:password,
+          logintype:"Admin"
+        }
+
+      try{
+          const check = await Admin.findOne({admin_id:admin_id})
+          if (check){
+              res.json("exists")
+              }
+              
+          else{
+              await Admin.insertMany([data])
+              await login.insertMany([data2])
+              res.json("notexists")
+
+          }
+      }
+          catch (e){
+              res.json("servererror")
+          }
+      
+})  
+
 
 
 /// login and signup
