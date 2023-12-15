@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 function User_register() {
   const [Firstname, setFirstname] = useState('');
@@ -12,6 +13,8 @@ function User_register() {
   const [Gender, setGender] = useState('');
   const [City, setCity] = useState('');
   const [Pincode, setPincode] = useState('');
+  const [password,setPassword]= useState('')
+  const [email, setEmail]= useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,12 +31,15 @@ function User_register() {
         Pincode,
         Gender,
         Substance,
+        email,
+        password
       });
 
       if (response.data === 'exists') {
-        alert(`Already submitted form`);
+        alert(`Already submitted form with ${email} email`);
       } else if (response.data === 'notexists') {
-        alert('Successfully submitted form');
+        alert('sucessfull register ');
+     
       }
     } catch (error) {
       alert('Wrong details');
@@ -240,6 +246,37 @@ function User_register() {
                   onChange={(e) => setPincode(e.target.value)}
                   required
                   placeholder="Pincode"
+                  style={inputStyles}
+                  name="Pincode"
+                />
+              </label>
+            </div>
+          </div>
+
+          <div style={nameEmailContainerStyles}>
+            <div style={nameInputStyles}>
+              <label style={labelStyles}>
+                Password:
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Password"
+                  style={inputStyles}
+                />
+              </label>
+            </div>
+            <div style={nameInputStyles}>
+              <label style={labelStyles}>
+                Email:
+                <input
+                  type="email"
+                  id="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="Email"
                   style={inputStyles}
                   name="Pincode"
                 />

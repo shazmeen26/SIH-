@@ -1,0 +1,39 @@
+const mongoose = require("mongoose");
+
+mongoose.connect('mongodb+srv://oswin:oswinalex@cluster0.7mnzpn3.mongodb.net/newtest', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log("Connected to Admin collection");
+  })
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB:", err);
+  });
+
+const adminSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  number: {
+    type: Number,
+    required: true,
+  },
+  center_name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  admin_Id: {
+    type: String,
+    required: true,
+  },
+});
+
+const Admin = mongoose.model("Admin", adminSchema);
+
+module.exports = Admin;

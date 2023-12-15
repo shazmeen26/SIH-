@@ -60,6 +60,11 @@ const newSchema = new mongoose.Schema({
     Substance:{
         type:String ,
         require:true,
+    },
+ 
+    email:{
+        type:String,
+        require:true,
     }
 })
 const register = mongoose.model("register", newSchema)

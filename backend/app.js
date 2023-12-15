@@ -4,7 +4,7 @@ const login = require("./login_collection")
 const cors =require("cors")
 const app = express();
 const jwt = require('jsonwebtoken')
-
+const employee = require("./employee_register")
 const RehabilitationCenter = require("./RehabilitationCenter")
 const Government = require("./GovernmentInfo")
 const DoctorInfo = require("./DoctorInfo")
@@ -30,6 +30,8 @@ app.post("/Register",async(req,res)=>{
         Pincode
         ,Gender,
         Substance,
+        email,
+        password,
         date} =req.body;
 
         const data = {
@@ -44,18 +46,26 @@ app.post("/Register",async(req,res)=>{
             Pincode:Pincode
             ,Gender:Gender,
             Substance:Substance,
+            email:email,
             
             
             Date: new Date()
           };
+          const data2 = {
+            email:email,
+            password:password,
+            logintype:"user"
+          }
 
         try{
-            const check = await register.findOne({Aadhar:Aadhar})
+            const check = await login.findOne({email:email})
             if (check){
                 res.json("exists")
                 }
+                
             else{
                 await register.insertMany([data])
+                await login.insertMany([data2])
                 res.json("notexists")
 
             }
@@ -65,6 +75,53 @@ app.post("/Register",async(req,res)=>{
             }
         
 })  
+
+
+
+//employee register
+app.post("/employee_Register",async(req,res)=>{
+  const{   name,
+            email,
+            employee_Id,
+            center_name,
+            number,
+            password,
+
+      date} =req.body;
+
+      const data = {
+        name:name,
+        email:email,
+        employee_Id:employee_Id,
+        center_name:center_name,
+        number:number,
+          Date: new Date()
+        };
+        const data2 = {
+          email:email,
+          password:password,
+          logintype:"employee"
+        }
+
+      try{
+          const check = await employee.findOne({employee_Id:employee_Id})
+          if (check){
+              res.json("exists")
+              }
+              
+          else{
+              await employee.insertMany([data])
+              await login.insertMany([data2])
+              res.json("notexists")
+
+          }
+      }
+          catch (e){
+              res.json("servererror")
+          }
+      
+})  
+
 
 /// login and signup
 

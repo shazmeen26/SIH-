@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Center_register() {
+function Admin_register() {
   const [Adminname, setAdminname] = useState('');
   const [Adminnumber, setAdminnumber] = useState('');
   const [Email, setEmail] = useState('');
@@ -252,4 +252,4 @@ function Center_register() {
   );
 }
 
-export default Center_register;
+export default Admin_register;

@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Employee_register() {
-  const [Name, setName] = useState('');
-  const [Contact, setContact] = useState('');
-  const [Email, setEmail] = useState('');
-  const [Password, setPassword] = useState('');
-  const [Position, setPosition] = useState('');
-  const [Department, setDepartment] = useState('');
+  const [name, setName] = useState('');
+  const [number, setContact] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [center_name, setCenter_name] = useState('');
+  const [employee_Id, setEmployee_Id] = useState('');
   
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send data to a backend API)
     try {
-      const response = await axios.post('http://localhost:8000/register', {
-        Name,
-        Contact,
-        Email,
-        Password,
-        Position,
-        Department,
+      const response = await axios.post('http://localhost:8000/employee_Register', {
+        name,
+        number,
+        email,
+        password,
+        center_name,
+        employee_Id
         
       });
 
@@ -144,8 +144,8 @@ function Employee_register() {
                 <input
                   type="text"
                   onChange={(e) => setName(e.target.value)}
-                  id="Name"
-                  name="Name"
+                  id="name"
+                  name="name"
                   required
                   placeholder=" Name"
                   style={inputStyles}
@@ -158,8 +158,8 @@ function Employee_register() {
                 <input
                   type="tel"
                   onChange={(e) => setContact(e.target.value)}
-                  id="Contact"
-                  name="Contact"
+                  id="number"
+                  name="number"
                   required
                   placeholder="Contact Number"
                   style={inputStyles}
@@ -171,11 +171,40 @@ function Employee_register() {
                 Email:
                 <input
                   type="email"
-                  name="Email"
+                  name="email"
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="Email"
-                  id="Email"
+                  id="email"
+                  style={inputStyles}
+                />
+              </label>
+            </div>
+            <div style={nameInputStyles}>
+              <label style={labelStyles}>
+              Center name:
+                <input
+                  type="text"
+                  id="center_name"
+                  name="center_name"
+                  onChange={(e) => setCenter_name(e.target.value)}
+                  required
+                  placeholder="center name"
+                  style={inputStyles}
+                />
+              </label>
+            </div>
+          </div>
+          <div style={nameInputStyles}>
+              <label style={labelStyles}>
+                Employee id:
+                <input
+                  type="number"
+                  name="employee_id"
+                  onChange={(e) => setEmployee_Id(e.target.value)}
+                  required
+                  placeholder="Employee  id "
+                  id="employee_id"
                   style={inputStyles}
                 />
               </label>
@@ -185,8 +214,8 @@ function Employee_register() {
                 Password:
                 <input
                   type="password"
-                  id="Password"
-                  name="Password"
+                  id="password"
+                  name="password"
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder="Password"
@@ -194,46 +223,10 @@ function Employee_register() {
                 />
               </label>
             </div>
-          </div>
+       
 
  
 
-          <div style={nameEmailContainerStyles}>
-            <div style={nameInputStyles}>
-              <label style={labelStyles}>
-                Position:
-                <select
-                  required
-                  style={selectStyles}
-                  onChange={(e) => setPosition(e.target.value)}
-                >
-                  <option disabled hidden>
-                    Select Position
-                  </option>
-                  <option value="male">1</option>
-                  <option value="female">2</option>
-                  <option value="other">Other</option>
-                </select>
-              </label>
-            </div>
-            <div style={nameInputStyles}>
-              <label style={labelStyles}>
-                Department:
-                <select
-                  required
-                  style={selectStyles}
-                  onChange={(e) => setDepartment(e.target.value)}
-                >
-                  <option disabled hidden>
-                    Select Department
-                  </option>
-                  <option value="male">1</option>
-                  <option value="female">2</option>
-                  <option value="other">Other</option>
-                </select>
-              </label>
-            </div>
-          </div>
 
           
 

@@ -16,7 +16,7 @@ import AdminLogin from "./pages/registration/adminlogin/AdminLogin";
 import EmployeeLogin from "./pages/registration/employeelogin/EmployeeLogin";
 import LoginLanding from "./pages/registration/landing/LoginLanding";
 import RegisterLanding from "./pages/registration/landing/RegisterLanding";
-import Center_register from "./pages/registration/register/Center_register";
+import Admin_register from "./pages/registration/register/Center_register";
 import Employee_register from "./pages/registration/register/Employee_register";
 
 function App() {
@@ -92,8 +92,8 @@ function App() {
       element: <Patient_register />,
     },
     {
-      path: "/center_register",
-      element: <Center_register />,
+      path: "/admin_register",
+      element: <Admin_register />,
     },
     {
       path: "/employee_register",
