@@ -5,6 +5,10 @@ const cors =require("cors")
 const app = express();
 const jwt = require('jsonwebtoken')
 
+const RehabilitationCenter = require("./RehabilitationCenter")
+const Government = require("./GovernmentInfo")
+const DoctorInfo = require("./DoctorInfo")
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -148,3 +152,5 @@ app.post("/login",  async (req, res) => {
 app.listen(8000,()=>{
     console.log("Server listening at port 8000")
 })
+
+
