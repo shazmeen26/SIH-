@@ -1,0 +1,85 @@
+/* about.scss */
+
+.About {
+  background-color: white;
+  padding: 20px;
+}
+
+.main1 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.About img {
+  width: 450px;
+  height: auto;
+}
+
+.About-text {
+  flex: 1;
+  color: black;
+}
+
+.About-text h2 {
+  text-align: center;
+  position: relative;
+  font-size: 2em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: black;
+
+  /* Style the underline */
+  &::after {
+      content: "";
+      display: block;
+      width: 160px; /* Adjust the width of the underline */
+      height: 2px; /* Adjust the height/thickness of the underline */
+      background-color: #007BFF; /* Adjust the color of the underline */
+      position: absolute;
+      bottom: 30;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
+.About-text p {
+  font-size: 22px;
+  padding-bottom: 40px;
+  color: black;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.About-text a {
+  padding: 12px;
+  background-color: rgb(61, 32, 61);
+  color: white;
+  border: 2px solid white;
+  border-radius: 6px;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.About-text a:hover {
+  background-color: goldenrod;
+  transform: scale(1.1);
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .main {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .About img {
+      margin-right: 0;
+      margin-bottom: 20px;
+  }
+
+  .About-text {
+      text-align: center;
+  }
+}
