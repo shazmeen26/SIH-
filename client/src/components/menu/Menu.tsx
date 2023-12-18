@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Menu.scss";
+import "./xc.scss";
 
 import { FaBookMedical, FaHome, FaHospital, FaMedkit, FaSignOutAlt, FaUser, FaUserInjured } from 'react-icons/fa';
 import { colors } from "@mui/material";

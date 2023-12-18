@@ -252,7 +252,21 @@ app.post("/login",  async (req, res) => {
       
     }
   });
+
   
+// Endpoint to retrieve all patient data
+app.get('/patientdata', async (req, res) => {
+  try {
+    // Fetch all patient records from the 'register' collection
+    const patients = await register.find({});
+
+    // Send the retrieved patient data as a response
+    res.json({ patients });
+  } catch (error) {
+    // Handle errors
+    res.status(500).json({ error: 'Failed to retrieve patient data' });
+  }
+});
 
 app.listen(8000,()=>{
     console.log("Server listening at port 8000")

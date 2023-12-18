@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import DataTable from "../../components/dataTable/DataTable";
 import "./patients.scss";
 import { useState } from "react";
+import axios from "axios";
 
 import { patientRows } from "../../data";
 // import { useQuery } from "@tanstack/react-query";
@@ -52,6 +53,21 @@ const columns: GridColDef[] = [
 
 const Patients = () => {
   const [open, setOpen] = useState(false);
+
+
+
+
+// Make a GET request to retrieve patient data
+axios.get('http://localhost:8000/patientdata')
+  .then(response => {
+    console.log('Patient Data:', response.data);
+    // Handle the retrieved patient data here
+  })
+  .catch(error => {
+    console.error('Error fetching patient data:', error);
+    // Handle errors here
+  });
+
 
   // TEST THE API
 
