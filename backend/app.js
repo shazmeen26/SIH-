@@ -35,8 +35,7 @@ app.post("/Register",async(req,res)=>{
         date} =req.body;
 
         const data = {
-            firstname:Firstname,
-            secondname:Secondname,
+          
             
             Age:Age,
             Aadhar:Aadhar,
@@ -47,11 +46,14 @@ app.post("/Register",async(req,res)=>{
             ,Gender:Gender,
             Substance:Substance,
             email:email,
+            Firstname:Firstname,
+            Secondname:Secondname,
             
             
             Date: new Date()
           };
           const data2 = {
+            
             email:email,
             password:password,
             logintype:"user"

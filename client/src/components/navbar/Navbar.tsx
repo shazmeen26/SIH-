@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className="navbar">
       <Link to="/" className="logo">
         <img src="logo.svg" alt="" />
-        <span>NashaMukti</span>
+        <span style={{ color: 'white' }}>NashaMukti</span>
       </Link>
       <div className="icons">
        
@@ -15,9 +15,9 @@ const Navbar = () => {
           <img src="/notifications.svg" alt="" />
           <span>1</span>
         </div>
-        <Link to="/login_landing" className="user">
+        <Link style={{ color: 'white' }} to="/login_landing" className="user">
           <FaUserAlt />
-          <span>Aryaan</span>
+          <span style={{ color: 'white' }}>Aryaan</span>
         </Link>
         
       </div>
