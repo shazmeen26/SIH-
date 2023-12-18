@@ -1,83 +1,68 @@
+import React, { useState, useEffect } from "react";
 import { GridColDef } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import DataTable from "../../components/dataTable/DataTable";
-import "./patients.scss";
-import { useState } from "react";
 import axios from "axios";
-
-import { patientRows } from "../../data";
-// import { useQuery } from "@tanstack/react-query";
+import "./patients.scss";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "ID", width: 90 },
   {
-    field: "img",
-    headerName: "Avatar",
-    width: 100,
-    renderCell: (params) => {
-      return <img src={params.row.img || "/noavatar.png"} alt="" />;
-    },
-  },
-  {
-    field: "firstName",
+    field: "Firstname",
     type: "string",
-    headerName: "First name",
-    width: 150,
-  },
-  {
-    field: "lastName",
-    type: "string",
-    headerName: "Last name",
+    headerName: "firstname",
     width: 150,
   },
   {
     field: "email",
     type: "string",
     headerName: "Email",
-    width: 200,
+    width: 150,
   },
   {
-    field: "phone",
+    field: "Number",
     type: "string",
     headerName: "Phone",
-    width: 200,
+    width: 150,
   },
   {
-    field: "createdAt",
-    headerName: "Created At",
-    width: 200,
+    field: "Address",
     type: "string",
+    headerName: "Location",
+    width: 150,
   },
- 
+  {
+    field: "Substance",
+    type: "string",
+    headerName: "Substance",
+    width: 150,
+  },
 ];
 
 const Patients = () => {
-  const [open, setOpen] = useState(false);
+  const [patientRows, setPatientRows] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:8000/patientdata')
+      .then(response => {
+        console.log('Patient Data:', response.data);
+        const patientsArray = response.data.patients || [];
+        setPatientRows(patientsArray);
+      })
+      .catch(error => {
+        console.error('Error fetching patient data:', error);
+      });
+  }, []);
 
+  const nextPage = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+  };
 
-
-// Make a GET request to retrieve patient data
-axios.get('http://localhost:8000/patientdata')
-  .then(response => {
-    console.log('Patient Data:', response.data);
-    // Handle the retrieved patient data here
-  })
-  .catch(error => {
-    console.error('Error fetching patient data:', error);
-    // Handle errors here
-  });
-
-
-  // TEST THE API
-
-  // const { isLoading, data } = useQuery({
-  //   queryKey: ["allusers"],
-  //   queryFn: () =>
-  //     fetch("http://localhost:8800/api/users").then(
-  //       (res) => res.json()
-  //     ),
-  // });
+  const startIdx = (currentPage - 1) * pageSize;
+  const endIdx = startIdx + pageSize;
+  const displayedPatients = patientRows.slice(startIdx, endIdx);
 
   return (
     <div className="users">
@@ -87,15 +72,25 @@ axios.get('http://localhost:8000/patientdata')
           Add Patients
         </Link>
       </div>
-      <DataTable slug="patients" columns={columns} rows={patientRows} />
-      {/* TEST THE API */}
-
-      {/* {isLoading ? (
-        "Loading..."
-      ) : (
-        <DataTable slug="users" columns={columns} rows={data} />
-      )} */}
-     
+      <table border={1} width={"100%"}>
+        <thead>
+          <tr>
+            {columns.map(column => (
+              <th key={column.field}>{column.headerName}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {displayedPatients.map((patient, index) => (
+            <tr key={index}>
+              {columns.map(column => (
+                <td key={column.field}>{patient[column.field]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <button onClick={nextPage}>Next</button>
     </div>
   );
 };
