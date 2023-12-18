@@ -59,7 +59,7 @@ const Centers = () => {
     <div className="products">
       <div className="info">
         <h1>Centers</h1>
-        <Link to="/center_register" className="add-center-link">
+        <Link to="/admin_register" className="add-center-link">
           Add Centers
         </Link>
       </div>

@@ -25,8 +25,8 @@ function UserLogin() {
       });
 
       if (response.data === "exists") {
-        alert("Welcome user");
-        navigate('/'); // Redirect to homepage upon successful login
+        
+        navigate('/user_dashboard'); // Redirect to homepage upon successful login
       } else if (response.data === "notexists") {
         setError("Your account doesn't exist");
       }

@@ -95,9 +95,7 @@ function RegisterLanding() {
         <button className="user-type-button" onClick={() => handleUserSelection('patient')}>
           Patient Register
         </button>
-        <button className="user-type-button" onClick={() => handleUserSelection('admin')}>
-          Admin Register
-        </button>
+        
         <button className="user-type-button" onClick={() => handleUserSelection('employee')}>
            Government Employee Register
         </button>

@@ -25,7 +25,7 @@ function AdminLogin() {
       });
 
       if (response.data === "exists") {
-        alert("Welcome user");
+        
         navigate('/'); // Redirect to homepage upon successful login
       } else if (response.data === "notexists") {
         setError("Your account doesn't exist");

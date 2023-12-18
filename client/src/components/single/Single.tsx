@@ -71,21 +71,7 @@ import {
             </div>
           )}
         </div>
-        <div className="activities">
-          <h2>Latest Activities</h2>
-          {props.activities && (
-            <ul>
-              {props.activities.map((activity) => (
-                <li key={activity.text}>
-                  <div>
-                    <p>{activity.text}</p>
-                    <time>{activity.time}</time>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+
       </div>
     );
   };

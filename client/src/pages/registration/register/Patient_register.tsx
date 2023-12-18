@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
@@ -15,6 +15,8 @@ function User_register() {
   const [Pincode, setPincode] = useState('');
   const [password,setPassword]= useState('')
   const [email, setEmail]= useState("")
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,16 +38,26 @@ function User_register() {
       });
 
       if (response.data === 'exists') {
-        alert(`Already submitted form with ${email} email`);
+        setError('User with this email already exists.');
       } else if (response.data === 'notexists') {
-        alert('sucessfull register ');
-     
+        alert('Successfully registered');
+        setSubmitted(true);
       }
     } catch (error) {
       alert('Wrong details');
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (submitted) {
+      // Redirect to the user dashboard after successful registration
+      // You may replace "/user-dashboard" with the actual path for your user dashboard
+      setTimeout(() => {
+        setSubmitted(false); // Reset the submitted state after redirecting
+      }, 2000); // Set a delay to display the success message before redirecting
+    }
+  }, [submitted]);
 
   const containerStyles = {
     maxWidth: '700px', // Adjusted maximum width
@@ -353,11 +365,13 @@ function User_register() {
               </label>
             </div>
           </div>
-
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <button type="submit" style={submitButtonStyles}>
             Add Patient
           </button>
         </form>
+        {submitted && <p style={{ color: 'green' }}>Redirecting to the user dashboard...</p>}
+        {submitted && <Navigate to="/user_dashboard" />}
       </div>
     </div>
   );
