@@ -8,7 +8,10 @@ const jwt = require('jsonwebtoken');
 const employee = require("./employee_register");
 const RehabilitationCenter = require("./RehabilitationCenter");
 const Government = require("./GovernmentInfo")
-const DoctorInfo = require("./DoctorInfo")
+const Doctor = require("./newdoctor"); // Ensure the correct path
+
+// Now you can use 'Doctor' to interact with your mongoose model
+
 const Admin= require("./center_admin")
 const Appiontment =require("./appointment")
 
@@ -54,6 +57,9 @@ app.post("/Appointment", async (req, res) => {
       res.json("servererror");
     }
   });
+
+
+
 
   app.post("/Register", async (req, res) => {
     const {
@@ -107,7 +113,50 @@ app.post("/Appointment", async (req, res) => {
     }
   });
   
+/// doctor
+app.post("/doctorr", async (req, res) => {
+  const {
+    name,
+        number,
+        email,
+        password,
+        doctor_id,
+        dob,
+        experience
 
+
+  } = req.body;
+
+  const data = {
+    name:name,
+        number:number,
+        email:email,
+       
+        doctor_id:doctor_id,
+        dob:dob,
+        experience:experience
+
+  };
+
+  const data2 = {
+    email: email,
+    password:password,
+    logintype:"doctor"
+  };
+
+  try {
+    const check = await login.findOne({ email: email });
+    if (check) {
+      res.json("exists");
+    } else {
+      await Doctor.insertMany([data]);
+      await login.insertMany([data2]);
+      res.json("notexists");
+    }
+  } catch (e) {
+    res.json("servererror");
+  }
+});
 
 
 //employee register
@@ -308,7 +357,7 @@ app.get('/patientdata', async (req, res) => {
 app.get('/graphdata', async (req, res) => {
   try {
     const totalregisters = await register.countDocuments();
-    const totaldoctors = await DoctorInfo.countDocuments();
+    const totaldoctors = await Doctor_data.countDocuments();
     const totalcenters = await Admin.countDocuments();
 
     const responseData = {
