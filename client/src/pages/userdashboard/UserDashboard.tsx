@@ -5,6 +5,7 @@ import UserIntro from './UserIntro';
 import LeafletMap from './LeafletMap'
 import Faq from './Faq';
 import UserTimeline from './UserTimeline';
+import AppointmentBooking from './AppointmentBooking';
 import Email from './Email';
 import Footer from './UserFooter';
 
@@ -20,6 +21,7 @@ const UserDashboard = () => {
           <UserIntro />
           <LeafletMap/>
           <UserTimeline/>
+          <AppointmentBooking/>
           <Faq/>
           <Chatbot />
           {/* Add other components as needed */}
