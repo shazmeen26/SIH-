@@ -290,6 +290,19 @@ app.get('/graphdata', async (req, res) => {
 });
 
 
+app.get('/admindata', async (req, res) => {
+  try {
+    // Fetch all admin records from the 'RehabilitationCenter' collection
+    const adminsData = await Admin.find({});
+
+    // Send the retrieved admin data as a response
+    res.json({ admins: adminsData });
+  } catch (error) {
+    // Handle errors
+    res.status(500).json({ error: 'Failed to retrieve admin data' });
+  }
+});
+
 
 
 app.listen(8000,()=>{
