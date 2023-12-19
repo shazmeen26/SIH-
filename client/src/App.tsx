@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import Menu from './components/menu/Menu';
-import UserDashboard from './pages/home/UserDashboard';
+import UserLanding from './pages/home/UserLanding';
 import Home from './pages/home/Home';
 import Centers from './pages/centers/Centers';
 import Patients from './pages/patients/Patients';
@@ -20,6 +20,7 @@ import Center_register from './pages/registration/register/Center_register';
 import Employee_register from './pages/registration/register/Employee_register';
 import PatientDetails from './pages/patientdetails/PatientDetails';
 import CenterDetails from './pages/centerdetails/CenterDetails';
+import UserDashboard from './pages/userdashboard/UserDashboard';
 
 import './styles/global.scss';
 
@@ -64,6 +65,7 @@ function App() {
     { path: '/patient_register', element: <Patient_register /> },
     { path: '/admin_register', element: <Center_register /> },
     { path: '/employee_register', element: <Employee_register /> },
+    { path: '/user_landing', element: <UserLanding /> },
     { path: '/user_dashboard', element: <UserDashboard /> },
     { path: '/patient_details', element: <PatientDetails /> },
     { path: '/center_details', element: <CenterDetails /> },
