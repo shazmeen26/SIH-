@@ -4,6 +4,7 @@ import Chatbot from './ChatBot';
 import UserIntro from './UserIntro';
 import LeafletMap from './LeafletMap'
 import Faq from './Faq';
+import UserTimeline from './UserTimeline';
 import Email from './Email';
 import Footer from './UserFooter';
 
@@ -15,8 +16,10 @@ const UserDashboard = () => {
         
         <div style={{ flex: 1, padding: '20px' }}>
           {/* Place your components here */}
+          
           <UserIntro />
           <LeafletMap/>
+          <UserTimeline/>
           <Faq/>
           <Chatbot />
           {/* Add other components as needed */}

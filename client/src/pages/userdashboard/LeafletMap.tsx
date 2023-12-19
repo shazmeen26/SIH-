@@ -100,7 +100,7 @@ const LeafletMap = () => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>View All Centers</h1>
-      <div id="map" style={{ height: '600px', width: '1200px' }}></div>
+      <div id="map" style={{ height: '400px', width: '600px' }}></div>
       <div id="filterContainer">
         <select id="typeFilter">
           <option value="All">All</option>
