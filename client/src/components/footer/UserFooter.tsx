@@ -6,13 +6,13 @@ function UserFooter() {
     <footer>
       <div className="footer">
         <div className="footer-first">
-          <h1>NashaMukti</h1>
+          <h1 className="nasha">NashaMukti</h1>
           <div className="footer-links">
             <Link className="nav-link" aria-current="page" to="/aboutus">
               About Us
             </Link>
 
-            <a href="https://github.com/321dhruuv0037/Web_mp">
+            <a href="">
               View source code
             </a>
 
@@ -23,7 +23,7 @@ function UserFooter() {
         </div>
       </div>
       <div className="footer-rights">
-        Copyright &#169; www.vebook.com | All rights reserved
+        Copyright &#169; www.NashaMuktiKendra.com | All rights reserved
       </div>
     </footer>
   );

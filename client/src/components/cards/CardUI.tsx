@@ -16,9 +16,7 @@ const Card = (props) => {
         <div className="card-body text-dark">
           <h4 className="card-title">{props.title}</h4>
           <p className="card-text text-secondary">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-            modi possimus maxime quam eum dolor a aut officiis, doloremque
-            incidunt.
+          
           </p>
           {/* Use specific links for each card */}
           {props.title === 'Patients' && <Link to={patientsLink}><button className='btn btn-outline-success'>View</button></Link>}

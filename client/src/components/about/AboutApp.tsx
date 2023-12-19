@@ -10,7 +10,7 @@ function About() {
         <div className="About-text">
           <h2 id="section2">About App</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos accusamus necessitatibus, doloremque excepturi numquam nobis laborum voluptates vero soluta fugit? Beatae, rem sit veniam dolor qui nobis libero atque deleniti, ab tempore illum a. Libero, ullam? Cumque cupiditate sed quam.
+          Our Nasha Mukti (De-addiction) Database is a comprehensive resource center dedicated to providing information, support, and guidance to individuals seeking help for overcoming substance abuse and addiction. We offer a wide range of resources, including rehabilitation centers, support groups, counseling services, helplines, and educational materials, aimed at assisting individuals on their journey to recovery.
           </p>
           
         </div>

@@ -8,7 +8,8 @@ function Admin_register() {
   const [password, setPassword] = useState('');
   const [center_name, setCenter_name] = useState('');
   const [admin_id, setAdmin_Id] = useState('');
-  
+  const[city,setCity]=useState("");
+  const[address, setAddress]=useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +21,10 @@ function Admin_register() {
         email,
         password,
         center_name,
-        admin_id
+        admin_id,
+        city,
+        address
+        
         
       });
 
@@ -226,11 +230,41 @@ function Admin_register() {
               <label style={labelStyles}>
                 Admin:
                 <input
-                  type="admin_Id"
+                  type="text"
                   name="admin_Id"
                   onChange={(e) => setAdmin_Id(e.target.value)}
                   required
                   placeholder="Admin id"
+                  id="Email"
+                  style={inputStyles}
+                />
+              </label>
+            </div>
+
+            <div style={nameInputStyles}>
+              <label style={labelStyles}>
+              city:
+                <input
+                  type="text"
+                  name="city"
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                  placeholder="Admin id"
+                  id="Email"
+                  style={inputStyles}
+                />
+              </label>
+            </div>
+
+            <div style={nameInputStyles}>
+              <label style={labelStyles}>
+                Address:
+                <input
+                  type="admin_Id"
+                  name="admin_Id"
+                  onChange={(e) => setAddress(e.target.value)}
+                  required
+                  placeholder="Address"
                   id="Email"
                   style={inputStyles}
                 />

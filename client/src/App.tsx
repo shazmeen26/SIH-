@@ -20,8 +20,11 @@ import Center_register from './pages/registration/register/Center_register';
 import Employee_register from './pages/registration/register/Employee_register';
 import PatientDetails from './pages/patientdetails/PatientDetails';
 import CenterDetails from './pages/centerdetails/CenterDetails';
-import AdminMap from './pages/adminmap/AdminMap';
 
+import ContactUs from './NewComponent/ContactUs';
+import Testimonial from './NewComponent/Testimonial' ;
+import AboutUs from './NewComponent/AboutUs';
+import AdminMap from './pages/adminmap/AdminMap';
 import './styles/global.scss';
 import UserDashboard from './pages/userdashboard/UserDashboard';
 import AppointmentForm from './pages/userdashboard/AppointmentForm';
@@ -57,14 +60,13 @@ function App() {
         { path: '/centers', element: <Centers /> },
         { path: '/patients/:id', element: <Patient /> },
         { path: '/centers/:id', element: <Product /> },
-        { path: '/admin_map', element: <AdminMap /> },
       ],
     },
     { path: '/patient_login', element: <PatientLogin /> },
     { path: '/admin_login', element: <AdminLogin /> },
     { path: '/employee_login', element: <EmployeeLogin /> },
-    { path: '/login_landing', element: <LoginLanding /> },
-    { path: '/register_landing', element: <RegisterLanding /> },
+    { path: '/login_landidng', element: <LoginLanding /> },
+    { path: '/register_laning', element: <RegisterLanding /> },
     { path: '/patient_register', element: <Patient_register /> },
     { path: '/admin_register', element: <Center_register /> },
     { path: '/employee_register', element: <Employee_register /> },
@@ -72,6 +74,10 @@ function App() {
     { path: '/user_dashboard', element: <UserDashboard /> },
     { path: '/patient_details', element: <PatientDetails /> },
     { path: '/center_details', element: <CenterDetails /> },
+    { path: '/ContactUs', element: <ContactUs />},
+    { path: '/Testimonial', element: <Testimonial />},
+    { path: '/AboutUs', element: <AboutUs />},
+    
     { path: '/admin_map', element: <AdminMap /> },
     { path: '/appointment_form', element: <AppointmentForm /> },
   ]);
