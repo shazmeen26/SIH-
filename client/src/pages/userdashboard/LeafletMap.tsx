@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import "./leafletmap.scss"
 
 const LeafletMap = () => {
   const mapRef = useRef(null);
@@ -57,6 +58,12 @@ const LeafletMap = () => {
 
       // Initially load all markers
       addMarkers('All');
+
+      // Add event listener to handle location found
+      newMap.on('locationfound', onLocationFound);
+      newMap.on('locationerror', onLocationError);
+
+      newMap.locate({ setView: true, maxZoom: 16 });
     }
   }, []); // Run useEffect only once on component mount
 
@@ -81,6 +88,27 @@ const LeafletMap = () => {
     });
   };
 
+   // Function to handle location found
+   function onLocationFound(e) {
+    const radius = e.accuracy / 2;
+
+    // Change the color of your own location marker
+    L.marker(e.latlng, { icon: L.divIcon({ className: 'custom-marker-red' }) })
+      .addTo(mapRef.current)
+      .bindPopup('You are within ' + radius + ' meters from this point')
+      .openPopup();
+
+    // Increase the radius of the circle to 100 km
+    L.circle(e.latlng, { radius: 200000, color: 'blue' })
+      .addTo(mapRef.current)
+      .bindPopup('Your location (100 km radius)');
+  }
+
+  // Function to handle location error
+  function onLocationError(e) {
+    alert(e.message);
+  }
+
   // Function to handle filter change
   const onFilterChange = () => {
     const selectedType = document.getElementById('typeFilter').value;
@@ -100,10 +128,10 @@ const LeafletMap = () => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>View All Centers</h1>
-      <div id="map" style={{ height: '400px', width: '600px' }}></div>
+      <div id="map" style={{ height: '400px', width: '1000px' }}></div>
       <div id="filterContainer">
         <select id="typeFilter">
-          <option value="All">All</option>
+        <option value="All">All</option>
           <option value="Delhi">New Delhi</option> 
         <option value="West Bengal">KolWest Bengalkata</option> 
         <option value="Karnataka">Bengaluru</option> 
