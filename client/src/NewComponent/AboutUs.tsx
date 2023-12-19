@@ -1,6 +1,6 @@
 // Import necessary modules and components
 import React from 'react';
-import './AboutUs.css'; // Import the corresponding CSS file for styling
+import './AboutUs.scss'; // Import the corresponding CSS file for styling
 
 // AboutUs component
 const AboutUs: React.FC = () => {

@@ -20,11 +20,11 @@ import Center_register from './pages/registration/register/Center_register';
 import Employee_register from './pages/registration/register/Employee_register';
 import PatientDetails from './pages/patientdetails/PatientDetails';
 import CenterDetails from './pages/centerdetails/CenterDetails';
-import UserDashboard from './pages/userdashboard/UserDashboard';
+
 import ContactUs from './NewComponent/ContactUs';
 import Testimonial from './NewComponent/Testimonial' ;
 import AboutUs from './NewComponent/AboutUs';
-
+import AdminMap from './pages/adminmap/AdminMap';
 import './styles/global.scss';
 import UserDashboard from './pages/userdashboard/UserDashboard';
 import AppointmentForm from './pages/userdashboard/AppointmentForm';
@@ -76,7 +76,7 @@ function App() {
     { path: '/center_details', element: <CenterDetails /> },
     { path: '/ContactUs', element: <ContactUs />},
     { path: '/Testimonial', element: <Testimonial />},
-    { path: '/AboutUs', element: <AboutUs />}
+    { path: '/AboutUs', element: <AboutUs />},
     
     { path: '/admin_map', element: <AdminMap /> },
     { path: '/appointment_form', element: <AppointmentForm /> },
