@@ -17,6 +17,7 @@ import LoginLanding from './pages/registration/landing/LoginLanding';
 import RegisterLanding from './pages/registration/landing/RegisterLanding';
 import Patient_register from './pages/registration/register/Patient_register';
 import Center_register from './pages/registration/register/Center_register';
+import Doctor_register from './pages/registration/register/doctor_register';
 import Employee_register from './pages/registration/register/Employee_register';
 import PatientDetails from './pages/patientdetails/PatientDetails';
 import CenterDetails from './pages/centerdetails/CenterDetails';
@@ -68,7 +69,7 @@ function App() {
     { path: '/login_landing', element: <LoginLanding /> },
 
     { path: '/register_landing', element: <RegisterLanding /> },
-
+    { path: '/doctor_register', element: <Doctor_register />},
     { path: '/patient_register', element: <Patient_register /> },
     { path: '/admin_register', element: <Center_register /> },
     { path: '/employee_register', element: <Employee_register /> },
@@ -79,7 +80,7 @@ function App() {
     { path: '/ContactUs', element: <ContactUs />},
     { path: '/Testimonial', element: <Testimonial />},
     { path: '/AboutUs', element: <AboutUs />},
-    
+   
     { path: '/admin_map', element: <AdminMap /> },
     { path: '/appointment_form', element: <AppointmentForm /> },
   ]);
