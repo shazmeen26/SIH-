@@ -6,8 +6,8 @@ const Intro = () => {
   useEffect(() => {
     // Dynamically import Bootstrap styles
     import("bootstrap/dist/css/bootstrap.min.css");
-    // Dynamically import Bootstrap JavaScript
-    import("bootstrap/dist/js/bootstrap.bundle.min.js");
+    // // Dynamically import Bootstrap JavaScript
+    // import("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
 
   const containerStyle = {
@@ -38,6 +38,7 @@ const Intro = () => {
     maxWidth: '600px', // Adjust the maxWidth as needed
     margin: '0 auto',  // Center the content
     zIndex: 1, // Ensure the content is above the overlay
+    color: '#fff'
   };
 
   const buttonStyle = {
@@ -48,11 +49,18 @@ const Intro = () => {
     fontSize: '18px',
     marginTop: '20px',
     cursor: 'pointer',
+    
   };
 
   const paragraphStyle = {
     fontSize: '16px', // Adjust the font size as needed
+    color: '#fff',
   };
+  const HeadingStyle = {
+    color: '#fff',
+    ontWeight: 'bold'
+  };
+
 
   return (
     <div>
@@ -60,7 +68,7 @@ const Intro = () => {
       <div style={containerStyle}>
         <div style={imageOverlayStyle}></div>
         <div style={contentStyle}>
-          <h1>Welcome to the Centralised Nasha Mukti Database for India!</h1>
+          <h2 style={HeadingStyle}>Welcome to the Centralised Nasha Mukti Database for India!</h2>
           <p style={paragraphStyle}>
             Our mission is to provide a centralized platform to address the
             issues related to substance abuse and addiction in India. We aim to
