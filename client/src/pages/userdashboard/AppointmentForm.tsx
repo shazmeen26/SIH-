@@ -1,37 +1,57 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
+interface Doctor {
+  id: number;
+  name: string;
+}
+
 function User_register() {
- 
-  const [Number, setNumber] = useState('');
-  const [Address, setAddress] = useState('');
- 
-  const [Doctor, setTDoctor] = useState('');
-  
-  const [Date, setTDate] = useState('');
+  const [phone, setNumber] = useState('');
+  const [address, setAddress] = useState('');
+  const [Doctors, setDoctors] = useState<Doctor[]>([]); // Use Doctor interface
+  const [selectedDoctor, setSelectedDoctor] = useState('');
+  const [date, setDate] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+
+  const fetchDoctors = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/alldoctors');
+      console.log('Response from server:', response.data);
+  
+      // Assuming response.data.admins is an array of doctors
+      const mappedDoctors = response.data.admins.map((doctor) => ({
+        id: doctor._id,
+        name: doctor.doctor_name,
+      }));
+  
+      setDoctors(mappedDoctors);
+    } catch (error) {
+      console.error('Error fetching doctors:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDoctors();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission (e.g., send data to a backend API)
     try {
-      const response = await axios.post('http://localhost:8000/register', {
-      
-        
-      
-        Number,
-        Address,
-        
-        Doctor,
-        
+      const response = await axios.post('http://localhost:8000/Appointment', {
+        phone,
+        address,
+        doctor: selectedDoctor,
+        date,
       });
 
       if (response.data === 'exists') {
-        setError('User with this email already exists.');
+        setError(`alredy booked a appointment from ${phone}`);
       } else if (response.data === 'notexists') {
-        alert('Successfully registered');
+        alert(`Successfully registered from ${phone}`);
         setSubmitted(true);
       }
     } catch (error) {
@@ -42,26 +62,24 @@ function User_register() {
 
   useEffect(() => {
     if (submitted) {
-      // Redirect to the user dashboard after successful registration
-      // You may replace "/user-dashboard" with the actual path for your user dashboard
       setTimeout(() => {
-        setSubmitted(false); // Reset the submitted state after redirecting
-      }, 2000); // Set a delay to display the success message before redirecting
+        setSubmitted(false);
+      }, 2000);
     }
   }, [submitted]);
 
   const containerStyles = {
-    maxWidth: '700px', // Adjusted maximum width
-    width: '90%', // Adjusted width for smaller screens
+    maxWidth: '700px',
+    width: '90%',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    maxHeight: '800px', // Increased height of the box
+    maxHeight: '800px',
     height: 'auto',
     padding: '30px',
     borderRadius: '20px',
     textAlign: 'center',
     boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.3)',
     flexDirection: 'column',
-    margin: '10px auto', // Center the form on the page
+    margin: '10px auto',
   };
 
   const inputStyles = {
@@ -72,52 +90,42 @@ function User_register() {
     borderRadius: '10px',
     fontSize: '16px',
     color: '#000',
-    margin: '5px 0', // Added margin between placeholders
+    margin: '5px 0',
   };
 
   const labelStyles = {
     display: 'block',
     fontWeight: 'bold',
     marginBottom: '5px',
-    color: '#fff', // Set label color to white
+    color: '#fff',
   };
 
   const registrationLabelStyles = {
     color: '#fff',
-    fontSize: '24px', // Font size increased
-    marginBottom: '20px', // Margin increased for better spacing
+    fontSize: '24px',
+    marginBottom: '20px',
   };
 
   const nameEmailContainerStyles = {
     display: 'flex',
-    flexWrap: 'wrap', // Allow wrapping on smaller screens
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
   };
 
   const nameInputStyles = {
-    flex: '1 1 calc(48% - 5px)', // Adjusted flex for smaller screens and reduced margin
-    marginBottom: '10px', // Added margin for better spacing on smaller screens
+    flex: '1 1 calc(48% - 5px)',
+    marginBottom: '10px',
   };
 
   const dateTimeContainerStyles = {
     display: 'flex',
-    flexWrap: 'wrap', // Allow wrapping on smaller screens
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
   };
 
   const dateInputStyles = {
-    flex: '1 1 calc(45% - 10px)', // Adjusted flex for smaller screens
-    marginBottom: '10px', // Added margin for better spacing on smaller screens
-  };
-
-  const genderInputStyles = {
-    flex: '1 1 calc(45% - 10px)', // Adjusted flex for smaller screens
-    marginBottom: '10px', // Added margin for better spacing on smaller screens
-  };
-
-  const timeInputStyles = {
-    flex: '1 1 calc(50% - 10px)', // Adjusted flex for smaller screens
-    marginBottom: '10px', // Added margin for better spacing on smaller screens
+    flex: '1 1 calc(45% - 10px)',
+    marginBottom: '10px',
   };
 
   const selectStyles = {
@@ -127,8 +135,8 @@ function User_register() {
     marginBottom: '10px',
     borderRadius: '10px',
     fontSize: '16px',
-    color: '#000', // Set text color to black
-    margin: '5px 0', // Added margin between placeholders
+    color: '#000',
+    margin: '5px 0',
   };
 
   const buttonStyles = {
@@ -153,9 +161,6 @@ function User_register() {
         <h2 style={registrationLabelStyles}>Patient Registration</h2>
         <form onSubmit={handleSubmit}>
           <div style={nameEmailContainerStyles}>
-            
-            
-            
             <div style={nameInputStyles}>
               <label style={labelStyles}>
                 Phone Number:
@@ -186,10 +191,6 @@ function User_register() {
             </label>
           </div>
 
-          
-
-          
-
           <div style={dateTimeContainerStyles}>
             <div style={dateInputStyles}>
               <label style={labelStyles}>
@@ -205,27 +206,34 @@ function User_register() {
                 />
               </label>
             </div>
-            <div style={genderInputStyles}>
+            <div style={selectStyles}>
               <label style={labelStyles}>
                 Doctor:
                 <select
-                  required
-                  style={selectStyles}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                  <option disabled hidden>
-                    Select Doctor
-                  </option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
+  required
+  onChange={(e) => setSelectedDoctor(e.target.value)}
+>
+  <option disabled hidden>
+    Select Doctor
+  </option>
+  {Doctors.length > 0 ? (
+    Doctors.map((doctor) => (
+      <option key={doctor.id} value={doctor.name}>
+        {doctor.name}
+      </option>
+    ))
+  ) : (
+    <option value="" disabled>
+      Loading Doctors...
+    </option>
+  )}
+</select> 
               </label>
             </div>
           </div>
 
           {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit" style={submitButtonStyles}>
+          <button  type="submit" style={submitButtonStyles}>
             Book Appointment
           </button>
         </form>
