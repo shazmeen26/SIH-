@@ -24,6 +24,7 @@ import AdminMap from './pages/adminmap/AdminMap';
 
 import './styles/global.scss';
 import UserDashboard from './pages/userdashboard/UserDashboard';
+import AppointmentForm from './pages/userdashboard/AppointmentForm';
 
 function App() {
   const Layout = () => {
@@ -72,6 +73,7 @@ function App() {
     { path: '/patient_details', element: <PatientDetails /> },
     { path: '/center_details', element: <CenterDetails /> },
     { path: '/admin_map', element: <AdminMap /> },
+    { path: '/appointment_form', element: <AppointmentForm /> },
   ]);
 
   return <RouterProvider router={router} />;
