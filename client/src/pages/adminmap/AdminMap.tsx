@@ -2,18 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-interface Center {
-  type: string;
-  lat: number;
-  lng: number;
-}
-
-const AdminMap: React.FC = () => {
-  const mapRef = useRef<L.Map | null>(null);
+const AdminMap = () => {
+  const mapRef = useRef(null);
 
   // Sample JSON data - replace this with your actual data
-  const jsonData: Center[] = [
-    
+  const jsonData = [
+    { type: 'Delhi', lat: 28.6139, lng: 77.2090 }, // New Delhi
         { type: 'Maharashtra', lat: 19.0760, lng: 72.8777 }, // Mumbai
         { type: 'West Bengal', lat: 22.5726, lng: 88.3639 }, // Kolkata
         { type: 'Karnataka', lat: 12.9716, lng: 77.5946 }, // Bengaluru
@@ -47,60 +41,66 @@ const AdminMap: React.FC = () => {
         { type: 'Madhya Pradesh', lat: 23.2599, lng: 77.4126 }, // Bhopal
         { type: 'Haryana', lat: 28.4089, lng: 77.3178 }, // Faridabad
         { type: 'Punjab', lat: 30.9010, lng: 75.8573 }, // Ludhiana
-    // ... more data
   ];
 
   useEffect(() => {
     // Check if the map container is not already initialized
     if (!mapRef.current) {
       // Initialize the map on the "map" div
-      mapRef.current = L.map('map').setView([20.5937, 78.9629], 5); // Centered at India
+      const newMap = L.map('map').setView([20.5937, 78.9629], 5); // Centered at India
+      mapRef.current = newMap;
 
       // Add a tile layer to add to our map
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
-      }).addTo(mapRef.current);
-
-      // Function to add markers
-      const addMarkers = (filterType: string) => {
-        // Clear existing markers
-        mapRef.current?.eachLayer((layer) => {
-          if (!!layer.toGeoJSON) {
-            mapRef.current?.removeLayer(layer);
-          }
-        });
-
-        // Add new markers based on filter
-        jsonData.forEach((item) => {
-          if (filterType === 'All' || item.type === filterType) {
-            L.marker([item.lat, item.lng]).addTo(mapRef.current!).bindPopup(`Type: ${item.type}`);
-          }
-        });
-      };
-
-      // Function to handle filter change
-      const onFilterChange = () => {
-        const selectedType = (document.getElementById('typeFilter') as HTMLSelectElement).value;
-        addMarkers(selectedType);
-      };
-
-      // Add event listener to the filter dropdown
-      document.getElementById('typeFilter')?.addEventListener('change', onFilterChange);
+      }).addTo(newMap);
 
       // Initially load all markers
       addMarkers('All');
-
-      // Clean up the event listener on component unmount
-      return () => {
-        document.getElementById('typeFilter')?.removeEventListener('change', onFilterChange);
-      };
     }
   }, []); // Run useEffect only once on component mount
 
+  // Function to add markers
+  const addMarkers = (filterType) => {
+    const mapInstance = mapRef.current;
+
+    // Clear existing markers
+    mapInstance.eachLayer((layer) => {
+      if (!!layer.toGeoJSON) {
+        mapInstance.removeLayer(layer);
+      }
+    });
+
+    // Add new markers based on filter
+    jsonData.forEach((item) => {
+      if (filterType === 'All' || item.type === filterType) {
+        L.marker([item.lat, item.lng])
+          .addTo(mapInstance)
+          .bindPopup(`Type: ${item.type}`);
+      }
+    });
+  };
+
+  // Function to handle filter change
+  const onFilterChange = () => {
+    const selectedType = document.getElementById('typeFilter').value;
+    addMarkers(selectedType);
+  };
+
+  // Add event listener to the filter dropdown
+  useEffect(() => {
+    document.getElementById('typeFilter')?.addEventListener('change', onFilterChange);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      document.getElementById('typeFilter')?.removeEventListener('change', onFilterChange);
+    };
+  }, []); // Run useEffect only once on component mount
+
   return (
-    <div style={styles.container}>
-      <h1 style={styles.header}>View All Centers in India</h1>
-      <div id="map" style={{ height: '400px', width: '100%' }}></div>
+    <div>
+      <h1 style={{ textAlign: 'center' }}>View All Centers</h1>
+      <div id="map" style={{ height: '400px', width: '1000px' }}></div>
       <div id="filterContainer">
         <select id="typeFilter">
           <option value="All">All</option>
@@ -125,26 +125,10 @@ const AdminMap: React.FC = () => {
         <option value="Madhya Pradesh">Madhya Pradesh</option> 
         <option value="Haryana">Haryana</option> 
         <option value="Punjab">Punjab</option> 
-          {/* Add more options based on your types */}
         </select>
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    padding: '10px',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    width: '100%', // Adjusted width
-    margin: '0 auto', // Center the component
-  },
-  header: {
-    fontSize: '18px',
-    textAlign: 'center',
-    marginBottom: '10px',
-    color: '#333', // Adjusted color
-  },
 };
 
 export default AdminMap;

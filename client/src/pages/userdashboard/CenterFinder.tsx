@@ -42,7 +42,7 @@ const styles = {
     borderRadius: '8px',
     padding: '20px',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    width: '300px', // Adjusted width
+    width: '200px', // Adjusted width
   },
   header: {
     display: 'flex',
@@ -69,7 +69,7 @@ const styles = {
   },
   input: {
     padding: '8px',
-    fontSize: '14px',
+    fontSize: '12px',
     borderRadius: '4px',
     border: '1px solid #ccc',
   },
