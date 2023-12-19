@@ -10,6 +10,9 @@ const RehabilitationCenter = require("./RehabilitationCenter");
 const Government = require("./GovernmentInfo")
 const DoctorInfo = require("./DoctorInfo")
 const Admin= require("./center_admin")
+const Appiontment =require("./appointment")
+
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
@@ -19,6 +22,39 @@ app.get("/", cors(), (req, res) => {
     res.json("Welcome to the backend server ");
   });
   
+  
+ 
+app.post("/Appointment", async (req, res) => {
+    const {
+      phone,
+      address,
+      date,
+      doctor,
+    } = req.body;
+ 
+    const data = {
+      phone:phone,
+      address:address,
+      date:date,
+      doctor:doctor
+    };
+ 
+   
+ 
+    try {
+      const check = await login.findOne({  phone:phone });
+      if (check) {
+        res.json("exists");
+      } else {
+        await Appiontment.insertMany([data]);
+       
+        res.json("notexists");
+      }
+    } catch (e) {
+      res.json("servererror");
+    }
+  });
+
   app.post("/Register", async (req, res) => {
     const {
       Firstname,
@@ -328,7 +364,18 @@ app.get("/substanceCounts", async (req, res) => {
   }
 });
 
+app.get('/alldoctors', async (req, res) => {
+  try {
+    // Fetch all admin records from the 'RehabilitationCenter' collection
+    const adminsData = await DoctorInfo.find({});
 
+    // Send the retrieved admin data as a response
+    res.json({ admins: adminsData });
+  } catch (error) {
+    // Handle errors
+    res.status(500).json({ error: 'Failed to retrieve admin data' });
+  }
+});
 
 
 app.listen(8000,()=>{
