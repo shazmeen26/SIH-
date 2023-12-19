@@ -1,72 +1,52 @@
-import React from 'react';
+// UserTimeline.jsx
 
-const UserTimeline = (props) => {
+import React from 'react';
+import './usertimeline.scss';
+
+const UserTimeline = () => {
+  // Dummy data for a single patient
+  const patientData = {
+    id: 1,
+    registered: '2023-01-01',
+    firstCheckup: '2023-02-15',
+    secondCheckup: '2023-03-10',
+    drugFree: '2023-04-20',
+  };
+
   return (
-    <div style={styles.activities}>
-      <h2>Latest Activities</h2>
-      {props.activities && (
+    <div className="timeline-container">
+      <h1 className="timeline-header">Timeline</h1>
+      <div className="timeline">
+        <div className="timeline-line"></div>
         <ul>
-          {props.activities.map((activity) => (
-            <li key={activity.text} style={styles.listItem}>
-              <div style={styles.timelineItem}>
-                <div style={styles.timelinePoint}></div>
-                <div style={styles.content}>
-                  <p>{activity.text}</p>
-                  <time>{activity.time}</time>
-                </div>
-              </div>
-            </li>
-          ))}
+          <li className="timelineItem">
+            <div className="timelinePoint"></div>
+            <div className="content registered-box">
+              <p>{`Registered: ${patientData.registered}`}</p>
+            </div>
+          </li>
+          <li className="timelineItem">
+            <div className="timelinePoint"></div>
+            <div className="content first-checkup-box">
+              <p>{`First Checkup: ${patientData.firstCheckup}`}</p>
+            </div>
+          </li>
+          <li className="timelineItem">
+            <div className="timelinePoint"></div>
+            <div className="content second-checkup-box">
+              <p>{`Second Checkup: ${patientData.secondCheckup}`}</p>
+            </div>
+          </li>
+          <li className="timelineItem">
+            <div className="timelinePoint"></div>
+            <div className="content drug-free-box">
+              <p>{`Drug-Free: ${patientData.drugFree}`}</p>
+            </div>
+          </li>
         </ul>
-      )}
+      </div>
     </div>
   );
-};
-
-const styles = {
-  activities: {
-    flex: 1,
-  },
-
-  listItem: {
-    listStyleType: 'none',
-    display: 'flex',
-    marginBottom: '20px',
-  },
-
-  timelineItem: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-
-  timelinePoint: {
-    width: '10px',
-    height: '10px',
-    borderRadius: '50%',
-    backgroundColor: '#f45b69',
-    marginRight: '10px',
-    marginTop: '5px', // Adjust as needed
-  },
-
-  content: {
-    minWidth: '480px',
-    padding: '15px',
-    backgroundColor: '#f45b6810',
-  },
-
-  '@media screen and (max-width: 768px)': {
-    listItem: {
-      flexDirection: 'column',
-    },
-
-    timelinePoint: {
-      marginTop: '0',
-    },
-
-    content: {
-      minWidth: 'unset',
-    },
-  },
 };
 
 export default UserTimeline;
