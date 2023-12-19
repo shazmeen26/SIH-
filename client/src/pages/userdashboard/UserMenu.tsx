@@ -12,8 +12,8 @@ const CDBSidebarMenuItem = lazy(() => import('cdbreact').then((module) => ({ def
 const UserMenu = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div style={{ display: 'flex', height: '600vh', marginLeft: '0px' }}>
-        <CDBSidebar textColor="#fff" backgroundColor="#333" style={{ height: '200vh' }}>
+      <div style={{ display: 'flex', height: '280vh', marginLeft: '0px' }}>
+        <CDBSidebar textColor="#fff" backgroundColor="#333" style={{ height: '280vh' }}>
           <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
             <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
               Sidebar

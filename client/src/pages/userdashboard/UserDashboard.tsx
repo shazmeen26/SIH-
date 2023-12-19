@@ -25,6 +25,7 @@ const UserDashboard = () => {
           <Faq/>
           <Chatbot />
           {/* Add other components as needed */}
+          <Footer/>
         </div>
       </div>
 
