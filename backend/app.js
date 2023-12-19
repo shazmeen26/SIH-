@@ -1,11 +1,12 @@
-const express= require("express")
-const register = require("./register_collection")
-const login = require("./login_collection")
-const cors =require("cors")
+const express= require("express");
+const register = require("./register_collection");
+const login = require("./login_collection");
+const cors =require("cors");
+const bcrypt = require("bcrypt"); 
 const app = express();
-const jwt = require('jsonwebtoken')
-const employee = require("./employee_register")
-const RehabilitationCenter = require("./RehabilitationCenter")
+const jwt = require('jsonwebtoken');
+const employee = require("./employee_register");
+const RehabilitationCenter = require("./RehabilitationCenter");
 const Government = require("./GovernmentInfo")
 const DoctorInfo = require("./DoctorInfo")
 const Admin= require("./center_admin")
@@ -18,65 +19,58 @@ app.get("/", cors(), (req, res) => {
     res.json("Welcome to the backend server ");
   });
   
-app.post("/Register",async(req,res)=>{
-    const{    Firstname,
-        Secondname,
-        
-        Age,
-        Aadhar,
-        Number,
-        Address,
-        City,
-        Pincode
-        ,Gender,
-        Substance,
-        email,
-        password,
-        date} =req.body;
-
-        const data = {
-          
-            
-            Age:Age,
-            Aadhar:Aadhar,
-            Number:Number,
-            Address:Address,
-            City:City,
-            Pincode:Pincode
-            ,Gender:Gender,
-            Substance:Substance,
-            email:email,
-            Firstname:Firstname,
-            Secondname:Secondname,
-            
-            
-            Date: new Date()
-          };
-          const data2 = {
-            
-            email:email,
-            password:password,
-            logintype:"user"
-          }
-
-        try{
-            const check = await login.findOne({email:email})
-            if (check){
-                res.json("exists")
-                }
-                
-            else{
-                await register.insertMany([data])
-                await login.insertMany([data2])
-                res.json("notexists")
-
-            }
-        }
-            catch (e){
-                res.json("servererror")
-            }
-        
-})  
+  app.post("/Register", async (req, res) => {
+    const {
+      Firstname,
+      Secondname,
+      Age,
+      Aadhar,
+      Number,
+      Address,
+      City,
+      Pincode,
+      Gender,
+      Substance,
+      email,
+      password,
+      date
+    } = req.body;
+  
+    const data = {
+      Age: Age,
+      Aadhar: Aadhar,
+      Number: Number,
+      Address: Address,
+      City: City,
+      Pincode: Pincode,
+      Gender: Gender,
+      Substance: Substance,
+      email: email,
+      Firstname: Firstname,
+      Secondname: Secondname,
+      Date: new Date()
+    };
+  
+    const data2 = {
+      email: email,
+      password: await bcrypt.hash(password, 10), // Hash the password before storing
+      logintype: "user"
+    };
+  
+    try {
+      const check = await login.findOne({ email: email });
+      if (check) {
+        res.json("exists");
+      } else {
+        await register.insertMany([data]);
+        await login.insertMany([data2]);
+        res.json("notexists");
+      }
+    } catch (e) {
+      res.json("servererror");
+    }
+  });
+  
 
 
 
@@ -171,24 +165,29 @@ app.post("/admin_Register",async(req,res)=>{
 
 
 
-/// login and signup
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await login.findOne({ email });
 
-app.post("/login",  async (req, res) => {
-    const { email, password } = req.body;
-    try {
-      const check = await login.findOne({ email, password });
+    if (user) {
+      // Compare the entered password with the hashed password using bcrypt.compare
+      const passwordMatch = await bcrypt.compare(password, user.password);
 
-   
-      if (check) {
+      if (passwordMatch) {
         res.json("exists");
       } else {
-        res.json("notexists");
+        res.json("invalidpassword");
       }
-    } catch (e) {
-      res.json("servererror");
+    } else {
+      res.json("notexists");
     }
-  });
-  
+  } catch (e) {
+    res.json("servererror");
+  }
+});
+
+
   app.post("/signup", async (req, res) => {
 
     
