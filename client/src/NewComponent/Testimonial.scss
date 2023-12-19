@@ -1,0 +1,47 @@
+/* Testimonial.scss */
+
+.testimonials-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    overflow: hidden;
+  }
+  
+  .testimonial-slider {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 20px; /* Add padding for better visual */
+    margin-bottom: -20px; /* Compensate for padding */
+  }
+  
+  .testimonial-cards {
+    display: inline-flex;
+    gap: 20px;
+  }
+  
+  .testimonial-card {
+    min-width: 500px;
+    padding: 20px;
+    background-color: #291542; /* Change background color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  
+    .testimonial-text {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+  
+    .testimonial-author {
+      font-style: italic;
+      color: white; /* Change color */
+    }
+
+    p{
+        color: white;
+    }
+  }
+  

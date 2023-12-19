@@ -1,0 +1,104 @@
+.contact-us {
+  display: flex;
+  justify-content: space-between;
+  
+  align-items: flex-start;
+  margin: 20px;
+  padding: 20px;
+  background-color: #EBF5FB ;
+  border-radius: 8px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+
+  .sidebar-left,
+  .sidebar-right {
+    width: 20%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 5px;
+
+    .contact-info,
+    .contact-number {
+      h3 {
+        font-size: 18px;
+        color: black;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 14px;
+        color: black;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .main-content {
+    width: 60%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin: 5px;
+
+    h2 {
+      font-size: 24px;
+      color: black;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      color: black;
+      margin-bottom: 20px;
+    }
+
+    .contact-form {
+      .form-group {
+        margin-bottom: 15px;
+
+        label {
+          font-size: 16px;
+          color: black;
+          margin-bottom: 5px;
+          display: block;
+        }
+
+        input[type='text'],
+        input[type='email'],
+        textarea {
+          width: 100%;
+          padding: 10px;
+          font-size: 14px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          transition: border-color 0.3s ease;
+
+          &:focus {
+            outline: none;
+            border-color: #3498db;
+          }
+        }
+
+        textarea {
+          resize: vertical;
+        }
+      }
+
+      button[type='submit'] {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #3498db;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #2980b9;
+        }
+      }
+    }
+  }
+}
