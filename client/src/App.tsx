@@ -26,6 +26,8 @@ import Testimonial from './NewComponent/Testimonial' ;
 import AboutUs from './NewComponent/AboutUs';
 
 import './styles/global.scss';
+import UserDashboard from './pages/userdashboard/UserDashboard';
+import AppointmentForm from './pages/userdashboard/AppointmentForm';
 
 function App() {
   const Layout = () => {
@@ -76,6 +78,8 @@ function App() {
     { path: '/Testimonial', element: <Testimonial />},
     { path: '/AboutUs', element: <AboutUs />}
     
+    { path: '/admin_map', element: <AdminMap /> },
+    { path: '/appointment_form', element: <AppointmentForm /> },
   ]);
 
   return <RouterProvider router={router} />;

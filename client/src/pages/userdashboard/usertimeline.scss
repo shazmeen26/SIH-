@@ -1,0 +1,91 @@
+// usertimeline.scss
+
+.timeline-container {
+    text-align: center;
+    margin-bottom: 20px;
+  
+    .timeline-header {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+  
+    .timeline {
+      display: flex;
+      align-items: center;
+      position: relative;
+  
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+  
+      .timelineItem {
+        display: flex;
+        align-items: center;
+  
+        .timelinePoint {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #3498db;
+          margin-right: 10px;
+        }
+  
+        .content {
+          min-width: 200px;
+          padding: 15px;
+          margin: 0;
+          position: relative;
+  
+          &.registered-box {
+            background-color: #1abc9c;
+          }
+  
+          &.first-checkup-box {
+            background-color: #e74c3c;
+          }
+  
+          &.second-checkup-box {
+            background-color: #f39c12;
+          }
+  
+          &.drug-free-box {
+            background-color: #3498db;
+          }
+  
+          &::before {
+            content: '';
+            position: absolute;
+            background-color: #333;
+            width: 2px;
+            height: calc(100% - 20px);
+            top: 0;
+            left: -11px; // Adjusted to connect boxes
+          }
+        }
+      }
+    }
+  
+    @media screen and (max-width: 768px) {
+      .timeline {
+        flex-direction: column;
+  
+        .timelineItem {
+          margin-bottom: 20px;
+  
+          .timelinePoint {
+            margin-right: 0;
+            margin-bottom: 10px;
+          }
+  
+          .content::before {
+            content: none; // Remove line for smaller screens
+          }
+        }
+      }
+    }
+  }
+  
