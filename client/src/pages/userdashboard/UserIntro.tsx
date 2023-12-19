@@ -1,80 +1,61 @@
-import React, { useEffect } from "react";
-import backgroundImage from './rehab1.jpg'; // Adjust the path accordingly
-
-
+import React from 'react';
+import backgroundImage from './rehab1.jpg';
+import UserMenu from './UserMenu';
+import CenterFinder from './CenterFinder';
 
 const UserIntro = () => {
-  useEffect(() => {
-    // Dynamically import Bootstrap styles
-    import("bootstrap/dist/css/bootstrap.min.css");
-    // Dynamically import Bootstrap JavaScript
-    import("bootstrap/dist/js/bootstrap.bundle.min.js");
-  }, []);
-
-  const containerStyle = {
-    position: 'absolute',top:'10.1%',right:'-30%',
-    width :"2000px",
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: '#fff',
-    fontSize: '24px',
-  };
-
-  const imageOverlayStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundImage})`,
-
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    
-  };
-
-  const contentStyle = {
-    textAlign: 'center',
-    maxWidth: '600px', // Adjust the maxWidth as needed
-    margin: '0 auto',  // Center the content
-    zIndex: 1, // Ensure the content is above the overlay
-  };
-
-  const buttonStyle = {
-    backgroundColor: 'transparent',
-    border: '2px solid #fff',
-    padding: '10px 20px',
-    color: '#fff',
-    fontSize: '18px',
-    marginTop: '20px',
-    cursor: 'pointer',
-  };
-
-  const paragraphStyle = {
-    fontSize: '16px', // Adjust the font size as needed
-  };
-
   return (
-    
-    <div>
-      
-      <div style={containerStyle}>
-        <div style={imageOverlayStyle}></div>
-        <div style={contentStyle}>
-          <h1>Welcome to the Centralised Nasha Mukti Database for India!</h1>
-          <p style={paragraphStyle}>
-            Our mission is to provide a centralized platform to address the
-            issues related to substance abuse and addiction in India. We aim to
-            connect individuals with the right resources and support for
-            rehabilitation.
+    <div style={{ ...styles.container, backgroundImage: `url(${backgroundImage})` }}>
+      <div style={styles.leftColumn}>
+        <div style={styles.content}>
+          <h1 style={styles.title}>Government Website</h1>
+          <p style={styles.description}>
+            Welcome to the official government website. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            This website provides valuable information and services for citizens.
           </p>
-          
         </div>
+      </div>
+      <div style={styles.rightColumn}>
+        <CenterFinder />
       </div>
     </div>
   );
+}
+
+const styles = {
+  container: {
+    padding: '20px',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '80vh',
+    borderRadius: '8px',
+    marginBottom: '20px',
+    color: '#fff',
+    display: 'flex',
+  },
+  leftColumn: {
+    flex: 1,
+    marginRight: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  rightColumn: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content: {
+    textAlign: 'center',
+  },
+  title: {
+    fontSize: '24px',
+    marginBottom: '10px',
+  },
+  description: {
+    fontSize: '16px',
+  },
 };
 
 export default UserIntro;

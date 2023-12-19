@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./xc.scss";
 
-import { FaBookMedical, FaHome, FaHospital, FaMedkit, FaSignOutAlt, FaUser, FaUserInjured } from 'react-icons/fa';
+import { FaBookMedical, FaHome, FaHospital, FaMapMarker, FaMedkit, FaSearchLocation, FaSignOutAlt, FaUser, FaUserInjured } from 'react-icons/fa';
 import { colors } from "@mui/material";
 
 const Menu = () => {
@@ -35,6 +35,10 @@ const Menu = () => {
         <Link to="/centers" className="listItem">
           <FaHospital/>
           <span className="listItemTitle" >Centers</span>
+        </Link>
+        <Link to="/admin_map" className="listItem">
+          <FaMapMarker/>
+          <span className="listItemTitle" >View Map</span>
         </Link>
       </div>
 

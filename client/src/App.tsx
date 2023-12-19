@@ -20,9 +20,10 @@ import Center_register from './pages/registration/register/Center_register';
 import Employee_register from './pages/registration/register/Employee_register';
 import PatientDetails from './pages/patientdetails/PatientDetails';
 import CenterDetails from './pages/centerdetails/CenterDetails';
-import UserDashboard from './pages/userdashboard/UserDashboard';
+import AdminMap from './pages/adminmap/AdminMap';
 
 import './styles/global.scss';
+import UserDashboard from './pages/userdashboard/UserDashboard';
 
 function App() {
   const Layout = () => {
@@ -55,6 +56,7 @@ function App() {
         { path: '/centers', element: <Centers /> },
         { path: '/patients/:id', element: <Patient /> },
         { path: '/centers/:id', element: <Product /> },
+        { path: '/admin_map', element: <AdminMap /> },
       ],
     },
     { path: '/patient_login', element: <PatientLogin /> },
@@ -69,6 +71,7 @@ function App() {
     { path: '/user_dashboard', element: <UserDashboard /> },
     { path: '/patient_details', element: <PatientDetails /> },
     { path: '/center_details', element: <CenterDetails /> },
+    { path: '/admin_map', element: <AdminMap /> },
   ]);
 
   return <RouterProvider router={router} />;
