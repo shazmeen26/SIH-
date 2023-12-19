@@ -302,6 +302,33 @@ app.get('/admindata', async (req, res) => {
   }
 });
 
+app.get("/substanceCounts", async (req, res) => {
+  try {
+    // Use aggregation pipeline to count documents for each substance
+    const substanceCounts = await register.aggregate([
+      {
+        $group: {
+          _id: '$Substance',
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    // Transform the result into an object for easier access
+    const countsObject = substanceCounts.reduce((acc, item) => {
+      acc[item._id] = item.count;
+      return acc;
+    }, {});
+
+    // Send the counts as a response
+    res.json(countsObject);
+  } catch (error) {
+    // Handle errors
+    res.status(500).json({ error: 'Failed to get substance counts' });
+  }
+});
+
+
 
 
 app.listen(8000,()=>{
