@@ -65,7 +65,7 @@ function App() {
     { path: '/patient_login', element: <PatientLogin /> },
     { path: '/admin_login', element: <AdminLogin /> },
     { path: '/employee_login', element: <EmployeeLogin /> },
-    { path: '/login_landidng', element: <LoginLanding /> },
+    { path: '/login_landing', element: <LoginLanding /> },
     { path: '/register_laning', element: <RegisterLanding /> },
     { path: '/patient_register', element: <Patient_register /> },
     { path: '/admin_register', element: <Center_register /> },
